@@ -1,0 +1,11 @@
+bind -l #lists all the bindings 
+bind -p #lists both the keybindings and corresponding function names 
+bind -P #display list based on functions 
+bind -f mybindings #read from file 
+#default file is .inputrc
+
+bind -q yank #query based on function 
+bind -u yank #unbinds 
+bind -r "\C-y" #removes all bindings for the particular key sequence 
+bind -v #lists all the readline variables 
+

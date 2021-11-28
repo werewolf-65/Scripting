@@ -1,0 +1,29 @@
+. - single character 
+* - match any number of previous (including 0)
+\+ - match any number of previous (not 0)
+$- end of the line 
+^- beginning of the line 
+\S - any non-whitespace character 
+\s - any whitespace character 
+? -optional 
+[a-z] - any lowercase letter 
+[A-Z] - any uppercase letter 
+[A-Za-z] - any letter 
+[0-9] - any number 
+
+\ -escape something 
+
+#matching some patterns 
+
+#websites
+https://facebook.com 
+http://wolfandswallow.xyz/ 
+http://kakshya.org/donate/
+
+grep "https\?://\S*\.[A-Za-z]\+\S*" websites
+
+#email 
+
+sailesh@gmail.com 
+
+"\S\+@\S\+.[a-zA-Z]\+" 
